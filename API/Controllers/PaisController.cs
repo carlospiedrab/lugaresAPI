@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Entities;
+using Core.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,25 +14,25 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class PaisController : ControllerBase
     {
-        private readonly ApplicationDbContext _db;
-        public PaisController(ApplicationDbContext db)
+        private readonly IPaisRepository _repo;
+        
+        public PaisController(IPaisRepository repo)
         {
-            _db = db;
-            
+            _repo = repo;                      
         }
 
 
         [HttpGet]
         public async Task<ActionResult<List<Pais>>> getPaises()
         {
-            var paises = await _db.Pais.ToListAsync();
+            var paises = await _repo.GetPaisAsync();
             return Ok(paises);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Pais>> GetProduct(int id)
         {
-            return await _db.Pais.FindAsync(id);
+            return await _repo.GetPaisByIdAsync(id);
         }
     }
 }

@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class Pais :BaseEntity
+    public class BaseEntity
     {
-        public string Name { get; set; }
-
-        public bool Estado { get; set; }
+        public int Id { get; set; }
     }
 }

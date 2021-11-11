@@ -14,5 +14,7 @@ namespace Infrastructure.Data
         }
 
         public DbSet<Pais> Pais { get; set; }
+        public DbSet<Lugar> Lugar { get; set; }
+        public DbSet<Categoria> Categoria { get; set; }
     }
 }
